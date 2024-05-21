@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { View, TextInput, Button, StyleSheet, Alert, ActivityIndicator } from 'react-native';
+import { View, StyleSheet, Alert, Text  } from 'react-native';
+import { TextInput, Button, ActivityIndicator, Avatar } from 'react-native-paper';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -42,24 +43,39 @@ const LoginScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
+      <Avatar.Icon 
+        size={80} 
+        icon="account" 
+        style={styles.avatar} 
+      />
       <TextInput
-        style={styles.textInput}
-        placeholder="Username"
+        label="Username"
+        mode="flat"
         value={username}
         onChangeText={setUsername}
         autoCapitalize="none"
+        style={styles.textInput}
       />
       <TextInput
-        style={styles.textInput}
-        placeholder="Password"
-        secureTextEntry={true}
+        label="Password"
+        mode="flat"
+        secureTextEntry
         value={password}
         onChangeText={setPassword}
+        style={styles.textInput}
       />
-      <Button title="Login" onPress={handleLogin} disabled={isLoading} />
+      <Button
+        mode="contained"
+        onPress={handleLogin}
+        loading={isLoading}
+        disabled={isLoading}
+        style={styles.button}
+      >
+        Login
+      </Button>
       {isLoading && (
         <View style={styles.loadingIndicator}>
-          <ActivityIndicator size="large" color="#0000ff" />
+          <ActivityIndicator animating={true} size="large" color="#0000ff" />
         </View>
       )}
     </View>
@@ -74,11 +90,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#f0f0f0',
   },
   textInput: {
-    height: 40,
-    borderColor: 'gray',
-    borderWidth: 1,
     marginBottom: 12,
-    paddingHorizontal: 8,
+  },
+  button: {
+    marginTop: 12,
   },
   loadingIndicator: {
     position: 'absolute',
@@ -88,6 +103,12 @@ const styles = StyleSheet.create({
     bottom: 0,
     justifyContent: 'center',
     alignItems: 'center',
+
+  },
+  avatar: {
+    alignSelf: 'center',
+    marginBottom: 24,
+    backgroundColor: '#40B1AB', // Adjust the background color as needed
   },
 });
 
