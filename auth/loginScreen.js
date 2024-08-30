@@ -5,13 +5,13 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import jwtDecode from 'jwt-decode';
 
 const LoginScreen = ({ navigation }) => {
-  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
   const handleLogin = async () => {
     try {
-      const response = await axios.post('mybackend', { email, password });
       const { token } = response.data;
+      const response = await axios.post(`http://localhost:3000/login/`, {username, password });
       const decoded = jwtDecode(token);
       console.log(decoded); // token payload
       await AsyncStorage.setItem('token', token);
@@ -25,9 +25,9 @@ const LoginScreen = ({ navigation }) => {
     <View style={styles.container}>
       <TextInput
         style={styles.textInput}
-        placeholder="Email"
-        value={email}
-        onChangeText={setEmail}
+        placeholder="username"
+        value={username}
+        onChangeText={setUsername}
         autoCapitalize="none"
       />
       <TextInput

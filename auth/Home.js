@@ -26,7 +26,7 @@ const Home = ({ navigation }) => {
 
     const token = await AsyncStorage.getItem('token');
     try {
-        const response = await axios.get('backendehere',{ 
+        const response = await axios.get(`http://localhost:3000/user/${userId}`,{
         headers: { Authorization: `Bearer  ${token}`}
         });
 

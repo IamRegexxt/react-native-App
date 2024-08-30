@@ -3,9 +3,14 @@ import { ScrollView, StyleSheet, Image } from 'react-native';
 import { Card, Text, Provider as PaperProvider } from 'react-native-paper';
 import { useFonts } from 'expo-font';
 
+
+
 // Define each card as a separate component for better reusability
 const MyComponent = ({ title, content, imageSource }) => (
-  <Card style={styles.card}>
+
+
+
+    <Card style={styles.card}>
     <Card.Cover source={imageSource} />
     <Card.Content>
       <Text variant="titleLarge" style={styles.title}>{title}</Text>
@@ -13,7 +18,6 @@ const MyComponent = ({ title, content, imageSource }) => (
     </Card.Content>
   </Card>
 );
-
 const EducationScreen = () => {
   return (
     <ScrollView contentContainerStyle={styles.container}>
